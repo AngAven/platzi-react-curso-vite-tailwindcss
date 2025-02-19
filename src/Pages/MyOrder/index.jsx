@@ -1,12 +1,11 @@
 import React from 'react';
+import {Layout} from "../../Components/Layout/index.jsx";
 
 const MyOrder = () => {
     return (
-        <>
-          <div>
-              MyOrder
-          </div>
-        </>
+        <Layout>
+            <p>My order</p>
+        </Layout>
     );
 };
 
