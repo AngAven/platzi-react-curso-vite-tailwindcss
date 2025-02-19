@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import {useState, useContext} from 'react';
+import {ShoppingCartContext} from '../Context'
 
 const Card = ({
                   title,
@@ -7,6 +8,8 @@ const Card = ({
                   image,
               }) => {
     const [errorImageLoad, setErrorImageLoad] = useState(false)
+    const  {count, setCount} = useContext(ShoppingCartContext)
+
 
     const loadImageError = () => {
         setErrorImageLoad(true)
@@ -27,6 +30,7 @@ const Card = ({
                 />
                 <div
                     className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
+                    onClick={() => setCount(count + 1)}
                 >+
                 </div>
             </figure>
