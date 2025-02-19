@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             const data = await axios
-                .get('https://api.escuelajs.co/api/v1/products')
+                .get('https://api.escuelajs.co/api/v1/products?offset=0&limit=16')
                 .then(({data}) => data)
                 .catch((e) => console.log('error', e))
             setItems(data)
