@@ -5,7 +5,7 @@ import {MyOrders} from "../MyOrders/index.jsx";
 import {SignIn} from "../SignIn/index.jsx";
 import {NotFound} from "../NotFound/index.jsx";
 import {MyAccount} from "../MyAccount"
-
+import {NavBar} from "../../Components/NavBar";
 import './App.css'
 
 const AppRoutes = () => {
@@ -25,6 +25,7 @@ function App() {
     return (
         <BrowserRouter>
             <AppRoutes/>
+            <NavBar/>
         </BrowserRouter>
     )
 }
