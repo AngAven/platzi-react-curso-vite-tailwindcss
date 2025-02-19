@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-    base: 'https://angaven.github.io/platzi-react-curso-vite-tailwindcss/',
+    // base: 'https://angaven.github.io/platzi-react-curso-vite-tailwindcss/',
   plugins: [
       react(),
       tailwindcss(),
