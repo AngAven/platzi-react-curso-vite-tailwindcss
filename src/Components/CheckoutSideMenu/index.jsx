@@ -35,10 +35,11 @@ const CheckoutSideMenu = () => {
                 />
             </div>
 
-            <div className={'px-6'}>
+            <div className={'tyu px-6 overflow-y-scroll'}>
                 {cartProducts.map((item)=> {
                     return <OrderCard
                         key={item.id}
+                        id={item.id}
                         title={item.title}
                         price={item.price}
                         imageURL={item.images}

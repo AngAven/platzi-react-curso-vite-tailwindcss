@@ -1,12 +1,11 @@
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import {ShoppingCartContext} from '../Context'
 import {PlusIcon} from "@heroicons/react/24/outline";
+import {CheckIcon} from "@heroicons/react/24/outline";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({product, title, price, category, image}) => {
     const  {
-        count,
-        setCount,
         openCheckoutSideMenu,
         closeCheckoutSideMenu,
         openProductDetail,
@@ -15,6 +14,11 @@ const Card = ({product, title, price, category, image}) => {
         setCartProducts,
         closeProductDetail
     } = useContext(ShoppingCartContext)
+
+    const icons = {
+        add: () => <PlusIcon />,
+        added: () =>  <CheckIcon/>
+    }
 
     const showProduct = () => {
         setProductToShow(product)
@@ -25,9 +29,32 @@ const Card = ({product, title, price, category, image}) => {
     const addProductsToCart = (e) => {
         e.stopPropagation()
         closeProductDetail()
-        setCount(count + 1)
         setCartProducts([...cartProducts, product])
         openCheckoutSideMenu()
+    }
+
+    const contRenderIcon = () => {
+        const isInCard = cartProducts.filter(item => item.id === product.id).length > 0
+
+        if (isInCard) {
+            return (
+                <div
+                    onClick={(e) => e.stopPropagation()}
+                    className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1 z-0'
+                >
+                    {icons.added()}
+                </div>
+            )
+        } else {
+            return (
+                <div
+                    className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
+                    onClick={(e) => addProductsToCart(e)}
+                >
+                    {icons.add()}
+                </div>
+            )
+        }
     }
 
     return (
@@ -42,16 +69,11 @@ const Card = ({product, title, price, category, image}) => {
                     className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'
                 >{category}</span>
                 <img
-                    src={ image}
+                    src={image}
                     alt=""
                     className={'w-full h-full object-cover rounded-lg'}
                 />
-                <div
-                    className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
-                    onClick={(e) => addProductsToCart(e)}
-                >
-                    <PlusIcon/>
-                </div>
+                {contRenderIcon()}
             </figure>
             <p className='flex justify-between'>
                 <span className='text-sm font-ligth'>{title}</span>

@@ -6,7 +6,10 @@ import {ShoppingBagIcon} from "@heroicons/react/24/outline/index.js";
 
 const NavBar = () => {
     const activeStyle = 'underline underline-offset'
-    const {count, openCheckoutSideMenu} = useContext(ShoppingCartContext)
+    const {
+        openCheckoutSideMenu,
+        cartProducts,
+    } = useContext(ShoppingCartContext)
 
     return (
         <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
@@ -91,11 +94,11 @@ const NavBar = () => {
                 >
                     <ShoppingBagIcon className="size-6"/>
                     <div className={`${
-                        count > 0
+                        cartProducts.length > 0
                             ? 'w-5 h-5 rounded-full bg-indigo-400 flex justify-center items-center text-white'
                             : 'text-black/60'}`
                     }>
-                        <p>{count}</p>
+                        <p>{cartProducts.length}</p>
                     </div>
                 </li>
             </ul>

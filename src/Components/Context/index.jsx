@@ -21,8 +21,6 @@ const ShoppingCartProvider = ({children}) => {
 
     return (
         <ShoppingCartContext.Provider value={{
-            count,
-            setCount,
             isProductDetailOpen,
             openProductDetail,
             closeProductDetail,

@@ -1,8 +1,18 @@
 import {XMarkIcon} from "@heroicons/react/24/outline/index.js";
+import {useContext} from "react";
+import {ShoppingCartContext} from "../Context/index.jsx";
 
-const OrderCard = ({title, imageURL, price }) => {
+const OrderCard = ({id, title, imageURL, price }) => {
     const imageNotFound = 'https://unsplash.com/photos/grayscale-photo-of-box-robot-on-table-ZnLprInKM7s'
+    const {
+        cartProducts,
+        setCartProducts
+    } = useContext(ShoppingCartContext)
 
+    const removeItem = ()=>{
+        const filterCart = cartProducts.filter(item => item.id !== id)
+        setCartProducts(filterCart)
+    }
 
     return (
         <div
@@ -26,7 +36,7 @@ const OrderCard = ({title, imageURL, price }) => {
                     {price}
                 </p>
                 <XMarkIcon
-                    onClick={() => console.log('hola')}
+                    onClick={removeItem}
                     className={'h-6 w-6 text-black cursor-pointer'}
                 />
             </div>
