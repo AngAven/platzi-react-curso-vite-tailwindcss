@@ -9,14 +9,29 @@ const CheckoutSideMenu = () => {
 
     const {
         cartProducts,
+        setCartProducts,
         isCheckoutSideMenuOpen,
         closeCheckoutSideMenu,
+        order,
+        setOrder,
     } = useContext(ShoppingCartContext)
 
     const closeDetail = () => {
         if (isCheckoutSideMenuOpen) {
             closeCheckoutSideMenu()
         }
+    }
+
+    const handleChechout = () => {
+        const orderTAdd = {
+            date: Date.now(),
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts),
+        }
+
+        setOrder([...order, orderTAdd])
+        setCartProducts([])
     }
 
     return (
@@ -35,8 +50,8 @@ const CheckoutSideMenu = () => {
                 />
             </div>
 
-            <div className={'tyu px-6 overflow-y-scroll'}>
-                {cartProducts.map((item)=> {
+            <div className={'checkout-side-menu order-card px-6 overflow-y-scroll'}>
+                {cartProducts.map((item) => {
                     return <OrderCard
                         key={item.id}
                         id={item.id}
@@ -47,15 +62,17 @@ const CheckoutSideMenu = () => {
                 })}
             </div>
 
-            <div
-                className={'px-6 '}
-            >
-                <p className={'absolute bottom-0 left-0 w-full bg-indigo-400 text-white z-10 shadow-[0px_-4px_20px_0px_#7c87ff]'}>
-                    <div className={'flex justify-around'}>
-                    <span className={'font-medium text-2xl'}>Total</span>
+            <div className={'px-6 mb-6'}>
+                <p className={'flex justify-between items-center mb-2'}>
+                    <span className={'font-light text-2xl'}>Total</span>
                     <span className={'font-medium text-2xl'}>${totalPrice(cartProducts)}</span>
-                    </div>
                 </p>
+                <button
+                    className={'bg-black py-3 text-white w-full rounded-lg'}
+                    onClick={() => handleChechout()}
+                >
+                    Checkout
+                </button>
 
             </div>
         </aside>
