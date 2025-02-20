@@ -1,6 +1,8 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {NavLink} from "react-router-dom";
 import {ShoppingCartContext} from "../Context/index.jsx";
+import {ShoppingBagIcon} from "@heroicons/react/24/outline/index.js";
+
 
 const NavBar = () => {
     const activeStyle = 'underline underline-offset'
@@ -83,8 +85,15 @@ const NavBar = () => {
                         }
                     >Sign in</NavLink>
                 </li>
-                <li>
-                    🛒 {count}
+                <li className={'flex items-center gap-3'}>
+                    <ShoppingBagIcon className="size-6"/>
+                    <div className={`${
+                        count > 0
+                            ? 'w-5 h-5 rounded-full bg-indigo-400 flex justify-center items-center text-white'
+                            : 'text-black/60'}`
+                    }>
+                        <p>{count}</p>
+                    </div>
                 </li>
             </ul>
         </nav>

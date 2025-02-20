@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
+import axios from "axios";
 import {Layout} from "../../Components/Layout/index.jsx";
 import {Card} from "../../Components/Card/index.jsx";
-import axios from "axios";
+import {ProductDetail} from "../../Components/ProductDetail/index.jsx";
 
 
 const Home = () => {
@@ -19,7 +20,9 @@ const Home = () => {
 
     return (
         <Layout>
-            <p>HOME</p>
+            <p
+                className={'text-2xl mb-2'}
+            >HOME</p>
             <div className={'grid gap-4 grid-cols-4 w-full max-w-screen-lg'}>
             {items?.map((item) => (
                 <Card
@@ -28,9 +31,11 @@ const Home = () => {
                     price={item.price}
                     category={item.category.name}
                     image={item.images[0]}
+                    product={item}
                 />
             ))}
             </div>
+            <ProductDetail/>
         </Layout>
     );
 };
