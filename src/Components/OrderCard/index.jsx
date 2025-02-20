@@ -9,8 +9,8 @@ const OrderCard = ({id, title, imageURL, price }) => {
         setCartProducts
     } = useContext(ShoppingCartContext)
 
-    const removeItem = ()=>{
-        const filterCart = cartProducts.filter(item => item.id !== id)
+    const removeItemFromShoppingCart = (productID)=>{
+        const filterCart = cartProducts.filter(item => item.id !== productID)
         setCartProducts(filterCart)
     }
 
@@ -36,7 +36,7 @@ const OrderCard = ({id, title, imageURL, price }) => {
                     {price}
                 </p>
                 <XMarkIcon
-                    onClick={removeItem}
+                    onClick={removeItemFromShoppingCart}
                     className={'h-6 w-6 text-black cursor-pointer'}
                 />
             </div>
