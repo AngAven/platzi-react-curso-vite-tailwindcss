@@ -1,12 +1,14 @@
 import {XMarkIcon} from "@heroicons/react/24/outline/index.js";
 import {useContext} from "react";
 import {ShoppingCartContext} from "../Context/index.jsx";
+import {OrderCard} from "../OrderCard/index.jsx";
 import './styles.css'
 
 
 const CheckoutSideMenu = () => {
-    // const notFoundImage = 'https://images.unsplash.com/photo-1609743522653-52354461eb27?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+
     const {
+        cartProducts,
         isCheckoutSideMenuOpen,
         closeCheckoutSideMenu,
     } = useContext(ShoppingCartContext)
@@ -31,6 +33,17 @@ const CheckoutSideMenu = () => {
                     onClick={() => closeDetail()}
                     className={'w-8 cursor-pointer'}
                 />
+            </div>
+
+            <div className={'px-6'}>
+                {cartProducts.map((item)=> {
+                    return <OrderCard
+                        key={item.id}
+                        title={item.title}
+                        price={item.price}
+                        imageURL={item.images}
+                    />
+                })}
             </div>
         </aside>
     );
