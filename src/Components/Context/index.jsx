@@ -9,8 +9,10 @@ const ShoppingCartProvider = ({children}) => {
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
-    // Product detail Show Product
+    // Product Detail Show Product
     const [productToShow, setProductToShow] = useState({})
+    // Sopping Cart products
+    const [cartProducts, setCartProducts] = useState([])
 
     return (
         <ShoppingCartContext.Provider value={{
@@ -21,6 +23,8 @@ const ShoppingCartProvider = ({children}) => {
             isProductDetailOpen,
             productToShow,
             setProductToShow,
+            cartProducts,
+            setCartProducts
         }}>
             {children}
         </ShoppingCartContext.Provider>
