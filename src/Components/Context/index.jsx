@@ -2,6 +2,7 @@ import {createContext, useState} from 'react';
 
 const ShoppingCartContext = createContext()
 
+// eslint-disable-next-line react/prop-types
 const ShoppingCartProvider = ({children}) => {
     // Shopping cart count
     const [count, setCount] = useState(0)
@@ -9,6 +10,10 @@ const ShoppingCartProvider = ({children}) => {
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
+    // Checkout side menu
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+    const openCheckoutSideMenu = ()=> setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = ()=> setIsCheckoutSideMenuOpen(false)
     // Product Detail Show Product
     const [productToShow, setProductToShow] = useState({})
     // Sopping Cart products
@@ -18,13 +23,16 @@ const ShoppingCartProvider = ({children}) => {
         <ShoppingCartContext.Provider value={{
             count,
             setCount,
+            isProductDetailOpen,
             openProductDetail,
             closeProductDetail,
-            isProductDetailOpen,
+            isCheckoutSideMenuOpen,
+            openCheckoutSideMenu,
+            closeCheckoutSideMenu,
             productToShow,
             setProductToShow,
             cartProducts,
-            setCartProducts
+            setCartProducts,
         }}>
             {children}
         </ShoppingCartContext.Provider>
