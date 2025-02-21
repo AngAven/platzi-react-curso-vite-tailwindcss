@@ -2,14 +2,14 @@ import {XMarkIcon} from "@heroicons/react/24/outline/index.js";
 import {useContext} from "react";
 import {ShoppingCartContext} from "../Context/index.jsx";
 
-const OrderCard = ({id, title, imageURL, price }) => {
+const OrderCard = ({id, title, imageURL, price}) => {
     const imageNotFound = 'https://unsplash.com/photos/grayscale-photo-of-box-robot-on-table-ZnLprInKM7s'
     const {
         cartProducts,
         setCartProducts
     } = useContext(ShoppingCartContext)
 
-    const removeItemFromShoppingCart = (productID)=>{
+    const removeItemFromShoppingCart = (productID) => {
         const filterCart = cartProducts.filter(item => item.id !== productID)
         setCartProducts(filterCart)
     }
@@ -35,10 +35,12 @@ const OrderCard = ({id, title, imageURL, price }) => {
                 <p className={'text-lg font-medium'}>
                     {price}
                 </p>
-                <XMarkIcon
-                    onClick={removeItemFromShoppingCart}
-                    className={'h-6 w-6 text-black cursor-pointer'}
-                />
+                {!window.location.href.includes('/my-orders/last') &&
+                    <XMarkIcon
+                        onClick={removeItemFromShoppingCart}
+                        className={'h-6 w-6 text-black cursor-pointer'}
+                    />
+                }
             </div>
         </div>
     );

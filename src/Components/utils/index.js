@@ -10,7 +10,7 @@ const totalPrice = (shoppingCart) => {
     const totalRaw = prices.reduce((acc, price) => acc + price, 0)
     const total = totalRaw + (totalRaw * iva)
 
-    return total
+    return total.toFixed(2)
 }
 
 export {
