@@ -9,14 +9,14 @@ const MyOrder = () => {
         <Layout>
             <p>My last order</p>
 
-            <div className={'checkout-side-menu order-card px-6 overflow-y-scroll'}>
-                {order?.slice(-1)[0].products.map((item) => {
+            <div className={'flex flex-col w-80'}>
+                {order?.slice(-1)[0].products.map((product) => {
                     return <OrderCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        price={item.price}
-                        imageURL={item.images}
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        price={product.price}
+                        imageURL={product.images}
                     />
                 })}
             </div>

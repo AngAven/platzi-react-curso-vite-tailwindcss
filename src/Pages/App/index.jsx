@@ -1,4 +1,4 @@
-import {useRoutes, BrowserRouter} from "react-router-dom";
+import {BrowserRouter, useRoutes} from "react-router-dom";
 import {ShoppingCartProvider} from "../../Components/Context/index.jsx";
 import {Home} from "../Home/index.jsx";
 import {MyOrder} from "../MyOrder/index.jsx";
@@ -11,17 +11,15 @@ import {CheckoutSideMenu} from "../../Components/CheckoutSideMenu/index.jsx";
 import './App.css'
 
 const AppRoutes = () => {
-    let routes = useRoutes([
+    return useRoutes([
         {path: "/", element: <Home/>,},
-        {path: "/my-orders", element: <MyOrders/>},
-        {path: "/my-account", element: <MyAccount/>},
         {path: "/sign-in", element: <SignIn/>},
+        {path: "/my-account", element: <MyAccount/>},
         {path: "/my-order", element: <MyOrder/>},
+        {path: "/my-orders", element: <MyOrders/>},
         {path: "/my-orders/last", element: <MyOrder/>},
         {path: "/*", element: <NotFound/>},
     ])
-
-    return routes
 }
 
 function App() {

@@ -23,7 +23,7 @@ const CheckoutSideMenu = () => {
         }
     }
 
-    const handleChechout = () => {
+    const handleCheckout = () => {
         const orderTAdd = {
             date: Date.now(),
             products: cartProducts,
@@ -72,7 +72,7 @@ const CheckoutSideMenu = () => {
                 <Link to={'/my-orders/last'}>
                     <button
                         className={'bg-black py-3 text-white w-full rounded-lg'}
-                        onClick={() => handleChechout()}
+                        onClick={() => handleCheckout()}
                     >
                         Checkout
                     </button>

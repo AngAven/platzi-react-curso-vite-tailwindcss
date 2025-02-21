@@ -2,7 +2,8 @@ import {XMarkIcon} from "@heroicons/react/24/outline/index.js";
 import {useContext} from "react";
 import {ShoppingCartContext} from "../Context/index.jsx";
 
-const OrderCard = ({id, title, imageURL, price}) => {
+// eslint-disable-next-line react/prop-types
+const OrderCard = ({title, imageURL, price}) => {
     const imageNotFound = 'https://unsplash.com/photos/grayscale-photo-of-box-robot-on-table-ZnLprInKM7s'
     const {
         cartProducts,
