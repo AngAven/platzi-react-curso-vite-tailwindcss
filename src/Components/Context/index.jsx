@@ -1,5 +1,5 @@
-import {createContext, useState} from 'react';
-
+import {createContext, useEffect, useState} from 'react';
+import axios from "axios";
 const ShoppingCartContext = createContext()
 
 // eslint-disable-next-line react/prop-types
@@ -10,17 +10,28 @@ const ShoppingCartProvider = ({children}) => {
     const closeProductDetail = () => setIsProductDetailOpen(false)
     // Checkout side menu
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
-    const openCheckoutSideMenu = ()=> setIsCheckoutSideMenuOpen(true)
-    const closeCheckoutSideMenu = ()=> setIsCheckoutSideMenuOpen(false)
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
     // Product Detail Show Product
     const [productToShow, setProductToShow] = useState({})
     // Sopping Cart products
     const [cartProducts, setCartProducts] = useState([])
     // Shopping Cart My Order
     const [order, setOrder] = useState([])
+    // Get Products
+    const [items, setItems] = useState([])
 
-    return (
-        <ShoppingCartContext.Provider value={{
+    useEffect(() => {
+        (async () => {
+            const data = await axios
+                .get('https://api.escuelajs.co/api/v1/products?offset=0&limit=16')
+                .then(({data}) => data)
+                .catch((e) => console.log('error', e))
+            setItems(data)
+        })()
+    }, [])
+
+    return (<ShoppingCartContext.Provider value={{
             isProductDetailOpen,
             openProductDetail,
             closeProductDetail,
@@ -33,11 +44,11 @@ const ShoppingCartProvider = ({children}) => {
             setCartProducts,
             order,
             setOrder,
-
+            items,
+            setItems,
         }}>
             {children}
-        </ShoppingCartContext.Provider>
-    )
+        </ShoppingCartContext.Provider>)
 
 }
 
