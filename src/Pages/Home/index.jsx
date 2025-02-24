@@ -10,12 +10,47 @@ const Home = () => {
         items,
         searchByTitle,
         setSearchByTitle,
+        filteredItems,
     } = useContext(ShoppingCartContext)
 
-    const search= (e) => {
+    const search = (e) => {
         const searchVale = e.target.value
-
         setSearchByTitle(searchVale)
+    }
+
+    const renderView = () => {
+        if (searchByTitle?.length > 0) {
+            if (filteredItems?.length > 0) {
+                return (
+                    filteredItems?.map((item) => (
+                        <Card
+                            key={item.id}
+                            title={item.title}
+                            price={item.price}
+                            category={item.category.name}
+                            image={item.images[0]}
+                            product={item}
+                        />
+                    ))
+                )
+            }
+            else{
+                return (<div>No items</div>)
+            }
+        } else {
+            return (
+                items?.map((item) => (
+                    <Card
+                        key={item.id}
+                        title={item.title}
+                        price={item.price}
+                        category={item.category.name}
+                        image={item.images[0]}
+                        product={item}
+                    />
+                ))
+            )
+        }
     }
 
     return (
@@ -25,20 +60,13 @@ const Home = () => {
             </div>
             <input type="text" placeholder={'Search...'}
                    className={'rounded-lg border-black border-2 mb-4 p-4 w-80 focus:outline-none'}
-                   onChange={(e) => search(e) }
+                   onChange={(e) => search(e)}
                    value={searchByTitle}
             />
             <div className={'grid gap-4 grid-cols-4 w-full max-w-screen-lg'}>
-                {items?.map((item) => (
-                    <Card
-                        key={item.id}
-                        title={item.title}
-                        price={item.price}
-                        category={item.category.name}
-                        image={item.images[0]}
-                        product={item}
-                    />
-                ))}
+                {
+                    renderView()
+                }
             </div>
             <ProductDetail/>
         </Layout>

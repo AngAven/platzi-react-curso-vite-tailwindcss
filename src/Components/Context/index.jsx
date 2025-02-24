@@ -21,8 +21,10 @@ const ShoppingCartProvider = ({children}) => {
     const [order, setOrder] = useState([])
     // Get Products
     const [items, setItems] = useState([])
+    const [filteredItems, setFilteredItems] = useState([])
+
     // Get products by title
-    const [searchByTitle, setSearchByTitle] = useState()
+    const [searchByTitle, setSearchByTitle] = useState('')
 
     useEffect(() => {
         (async () => {
@@ -33,6 +35,19 @@ const ShoppingCartProvider = ({children}) => {
             setItems(data)
         })()
     }, [])
+
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item
+            ?.title
+            .toLowerCase()
+            .includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect(() => {
+        if(searchByTitle){
+            setFilteredItems(filteredItemsByTitle(items,searchByTitle))
+        }
+    }, [items, searchByTitle]);
 
     return (<ShoppingCartContext.Provider value={{
         isProductDetailOpen,
@@ -50,7 +65,8 @@ const ShoppingCartProvider = ({children}) => {
         items,
         setItems,
         searchByTitle,
-        setSearchByTitle
+        setSearchByTitle,
+        filteredItems,
     }}>
         {children}
     </ShoppingCartContext.Provider>)
