@@ -7,7 +7,6 @@ import {ShoppingCartContext} from "../../Components/Context/index.jsx";
 
 const Home = () => {
     const {
-        items,
         searchByTitle,
         setSearchByTitle,
         filteredItems,
@@ -19,27 +18,9 @@ const Home = () => {
     }
 
     const renderView = () => {
-        if (searchByTitle?.length > 0) {
-            if (filteredItems?.length > 0) {
-                return (
-                    filteredItems?.map((item) => (
-                        <Card
-                            key={item.id}
-                            title={item.title}
-                            price={item.price}
-                            category={item.category.name}
-                            image={item.images[0]}
-                            product={item}
-                        />
-                    ))
-                )
-            }
-            else{
-                return (<div>No items</div>)
-            }
-        } else {
+        if (filteredItems?.length > 0) {
             return (
-                items?.map((item) => (
+                filteredItems?.map((item) => (
                     <Card
                         key={item.id}
                         title={item.title}
@@ -50,6 +31,8 @@ const Home = () => {
                     />
                 ))
             )
+        } else {
+            return (<div>No items</div>)
         }
     }
 

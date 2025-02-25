@@ -9,7 +9,18 @@ const NavBar = () => {
     const {
         openCheckoutSideMenu,
         cartProducts,
+        setSearchByCategory,
     } = useContext(ShoppingCartContext)
+
+    const handleClick = (e) => {
+        const category = e.target.href.split('/').slice(-1).toString() ?? ''
+
+        if (category === 'all') {
+            setSearchByCategory('')
+        } else {
+            setSearchByCategory(category)
+        }
+    }
 
     return (
         <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light top-0">
@@ -21,6 +32,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
+                        onClick={(e) => handleClick(e)}
                         to="/all"
                         className={({isActive}) =>
                             isActive ? activeStyle : undefined
@@ -29,6 +41,7 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
+                        onClick={(e) => handleClick(e)}
                         to="/electronics"
                         className={({isActive}) =>
                             isActive ? activeStyle : undefined
@@ -37,22 +50,34 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to="/furniture"
+                        onClick={(e) => handleClick(e)}
+                        to="/shoes"
                         className={({isActive}) =>
                             isActive ? activeStyle : undefined
                         }
-                    >furniture</NavLink>
+                    >shoes</NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to="/toys"
+                        onClick={(e) => handleClick(e)}
+                        to="/clothes"
                         className={({isActive}) =>
                             isActive ? activeStyle : undefined
                         }
-                    >toys</NavLink>
+                    >clothes</NavLink>
                 </li>
                 <li>
                     <NavLink
+                        onClick={(e) => handleClick(e)}
+                        to="/miscellaneous"
+                        className={({isActive}) =>
+                            isActive ? activeStyle : undefined
+                        }
+                    >miscellaneous</NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        onClick={(e) => handleClick(e)}
                         to="/others"
                         className={({isActive}) =>
                             isActive ? activeStyle : undefined

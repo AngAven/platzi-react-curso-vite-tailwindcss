@@ -15,6 +15,7 @@ const CheckoutSideMenu = () => {
         closeCheckoutSideMenu,
         order,
         setOrder,
+        setSearchByTitle,
     } = useContext(ShoppingCartContext)
 
     const closeDetail = () => {
@@ -34,6 +35,7 @@ const CheckoutSideMenu = () => {
         setOrder([...order, orderTAdd])
         setCartProducts([])
         closeCheckoutSideMenu()
+        setSearchByTitle('')
     }
 
     return (
